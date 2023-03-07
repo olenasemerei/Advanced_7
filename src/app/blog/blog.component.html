@@ -1,0 +1,14 @@
+<header class="header">
+  <ul>
+    <li [routerLink]="[ 'blog']">Blog</li>
+    <li [routerLink]="[ '']">Admin</li>
+  </ul>
+</header>
+<div class="container">
+  <div class="blog" *ngFor="let blog of blogs">
+    <img [src]="'../../../assets/images/'+blog.img" alt="photo">
+    <p class="author">{{blog.author}}</p>
+    <p class="tittle">{{blog.tittle}}</p>
+    <p class="text">{{blog.text}}</p>
+  </div>
+</div>

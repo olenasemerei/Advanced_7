@@ -1,0 +1,41 @@
+<header class="header">
+  <ul>
+    <li [routerLink]="[ 'blog']">Blog</li>
+    <li [routerLink]="[ '']">Admin</li>
+  </ul>
+</header>
+
+<div class="container">
+  <div><span>Blogs</span></div>
+  <div class="blockInputs">
+    <input type="text" class="tittleInput" placeholder="tittle here..." [(ngModel)]="tittleInput">
+
+    <textarea name="textInput" class="textInput" placeholder="text here..." [(ngModel)]="textInput"></textarea>
+    <input type="text" class="authorInput" placeholder="author here..." [(ngModel)]="authorInput">
+    <button *ngIf="!editStatus" class="add" (click)="add()"
+      [disabled]="!tittleInput || !textInput ||!authorInput">Add</button>
+    <button *ngIf="editStatus" class="btnAdd" (click)="save()"
+      [disabled]="!tittleInput || !textInput ||!authorInput">Save edit</button>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <th>#</th>
+    <th>Tittle</th>
+    <th>Text</th>
+    <th>Author</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </thead>
+  <tbody *ngFor="let blog  of adminBlog; index as i">
+    <td>{{i+1}}</td>
+    <td>{{blog.tittle}}</td>
+    <td>{{blog.text | slice:0:14 }}
+      <span *ngIf="blog.text.length > 15">...</span>
+    </td>
+    <td>{{blog.author}}</td>
+    <td><button class="btnEdit" (click)="edit(blog)">Edit</button></td>
+    <td><button class="btnDelete" (click)="delete(blog)">Delete</button></td>
+
+  </tbody>
+</table>
